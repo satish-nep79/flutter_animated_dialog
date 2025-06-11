@@ -3,12 +3,13 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 import 'model/list_data_model.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
@@ -16,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool showPerformance = false;
 
-  onSettingCallback() {
+  void onSettingCallback() {
     setState(() {
       showPerformance = !showPerformance;
     });
@@ -24,8 +25,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    final appTitle = 'Animated Dialog Example';
+    const appTitle = 'Animated Dialog Example';
     return MaterialApp(
       title: appTitle,
       showPerformanceOverlay: showPerformance,
@@ -45,13 +45,12 @@ class _MyAppState extends State<MyApp> {
 // In this case, the Widget takes a title, and creates a _MyHomePageState.
 class MyHomePage extends StatefulWidget {
   final String title;
-
   final VoidCallback onSetting;
 
-  MyHomePage({Key key, this.title, this.onSetting}) : super(key: key);
+  const MyHomePage({super.key, required this.title, required this.onSetting});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 // The State class is responsible for two things: holding some data you can
@@ -59,17 +58,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // Whether the green box should be visible or invisible
 
-  String selectedIndexText;
-
-  int selectIdx;
-
-  String singleSelectedIndexText;
-
-  int selectIndex;
-
-  String multiSelectedIndexesText;
-
-  List<int> selectedIndexes;
+  String? selectedIndexText;
+  int? selectIdx;
+  String? singleSelectedIndexText;
+  int? selectIndex;
+  String? multiSelectedIndexesText;
+  List<int>? selectedIndexes;
 
   @override
   Widget build(BuildContext context) {
@@ -78,27 +72,27 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              widget.onSetting?.call();
+              widget.onSetting.call();
             },
           )
         ],
       ),
       body: Center(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(bottom: 10.0),
-              padding: EdgeInsets.only(left: 15.0),
+              margin: const EdgeInsets.only(bottom: 10.0),
+              padding: const EdgeInsets.only(left: 15.0),
               height: 35.0,
               alignment: Alignment.centerLeft,
-              child: Text('General dialog'),
               color: const Color(0xFFDDDDDD),
+              child: const Text('General dialog'),
             ),
             ListTile(
-              title: Text('Default'),
+              title: const Text('Default'),
               onTap: () {
                 showAnimatedDialog(
                   context: context,
@@ -118,11 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Fade",
               ),
               onTap: () {
@@ -143,15 +137,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.fade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from top",
               ),
               onTap: () {
@@ -172,15 +166,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromTop,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from top and fade",
               ),
               onTap: () {
@@ -201,15 +195,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromTopFade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from bottom",
               ),
               onTap: () {
@@ -230,15 +224,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromBottom,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from bottom and fade",
               ),
               onTap: () {
@@ -259,15 +253,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromBottomFade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from left",
               ),
               onTap: () {
@@ -288,15 +282,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromLeft,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from left and fade",
               ),
               onTap: () {
@@ -317,15 +311,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromLeftFade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from right",
               ),
               onTap: () {
@@ -346,15 +340,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromRight,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Slide from right and fade",
               ),
               onTap: () {
@@ -375,15 +369,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.slideFromRightFade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Scale",
               ),
               onTap: () {
@@ -404,15 +398,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.scale,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Fade scale",
               ),
               onTap: () {
@@ -433,15 +427,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.fadeScale,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Scale rotate",
               ),
               onTap: () {
@@ -462,15 +456,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.scaleRotate,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Rotate",
               ),
               onTap: () {
@@ -491,15 +485,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.rotate,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Fade rotate",
               ),
               onTap: () {
@@ -520,15 +514,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.fadeRotate,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Rotate 3D",
               ),
               onTap: () {
@@ -549,15 +543,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.rotate3D,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Size",
               ),
               onTap: () {
@@ -578,15 +572,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.size,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Size fade",
               ),
               onTap: () {
@@ -607,15 +601,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.sizeFade,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "No animation",
               ),
               onTap: () {
@@ -636,25 +630,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   animationType: DialogTransitionType.none,
                   curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
 
             ///Classic dialog widget
             Container(
-              margin: EdgeInsets.only(bottom: 10.0, top: 50.0),
-              padding: EdgeInsets.only(left: 15.0),
+              margin: const EdgeInsets.only(bottom: 10.0, top: 50.0),
+              padding: const EdgeInsets.only(left: 15.0),
               height: 35.0,
               alignment: Alignment.centerLeft,
-              child: Text('Classic dialog widget'),
               color: const Color(0xFFDDDDDD),
+              child: const Text('Classic dialog widget'),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "General dialog",
               ),
               onTap: () {
@@ -678,15 +672,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
               title: Text(
-                "List dialog ${selectedIndexText != null && selectedIndexText.isNotEmpty ? '(index:' + selectedIndexText + ')' : ''}",
+                "List dialog ${selectedIndexText != null && selectedIndexText!.isNotEmpty ? '(index:$selectedIndexText)' : ''}",
               ),
               onTap: () async {
-                int index = await showAnimatedDialog(
+                int? index = await showAnimatedDialog<int>(
                   context: context,
                   barrierDismissible: true,
                   builder: (BuildContext context) {
@@ -694,7 +688,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       titleText: 'Title',
                       dataList: List.generate(
                         2,
-                        (index) {
+                            (index) {
                           return ListDataModel(
                               name: 'Name$index', value: 'Value$index');
                         },
@@ -713,19 +707,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectIdx = index ?? selectIdx;
                 print('selectedIndex:$selectIdx');
                 setState(() {
-                  this.selectedIndexText = '${selectIdx ?? ''}';
+                  selectedIndexText = '${selectIdx ?? ''}';
                 });
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
               title: Text(
-                "List single select${singleSelectedIndexText != null && singleSelectedIndexText.isNotEmpty ? '(index:' + singleSelectedIndexText + ')' : ''}",
+                "List single select${singleSelectedIndexText != null && singleSelectedIndexText!.isNotEmpty ? '(index:$singleSelectedIndexText)' : ''}",
               ),
               onTap: () async {
-                int index = await showAnimatedDialog(
+                int? index = await showAnimatedDialog<int>(
                   context: context,
                   barrierDismissible: true,
                   builder: (BuildContext context) {
@@ -736,7 +730,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       selectedIndex: selectIndex,
                       dataList: List.generate(
                         20,
-                        (index) {
+                            (index) {
                           return ListDataModel(
                               name: 'Name$index', value: 'Value$index');
                         },
@@ -750,19 +744,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 print('selectedIndex:$selectIndex');
                 setState(() {
-                  this.singleSelectedIndexText = '${selectIndex ?? ''}';
+                  singleSelectedIndexText = '${selectIndex ?? ''}';
                 });
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
               title: Text(
-                "List multiple select${multiSelectedIndexesText != null && multiSelectedIndexesText.isNotEmpty ? '(index:' + multiSelectedIndexesText + ')' : ''}",
+                "List multiple select${multiSelectedIndexesText != null && multiSelectedIndexesText!.isNotEmpty ? '(index:$multiSelectedIndexesText)' : ''}",
               ),
               onTap: () async {
-                List<int> indexes = await showAnimatedDialog(
+                List<int>? indexes = await showAnimatedDialog<List<int>>(
                   context: context,
                   barrierDismissible: true,
                   builder: (BuildContext context) {
@@ -773,7 +767,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       activeColor: Colors.green,
                       dataList: List.generate(
                         20,
-                        (index) {
+                            (index) {
                           return ListDataModel(
                               name: 'Name$index', value: 'Value$index');
                         },
@@ -787,18 +781,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectedIndexes = indexes ?? selectedIndexes;
                 print('selectedIndex:${selectedIndexes?.toString()}');
                 setState(() {
-                  this.multiSelectedIndexesText =
-                      selectedIndexes != null && selectedIndexes.length > 0
-                          ? selectedIndexes.toString()
-                          : '';
+                  multiSelectedIndexesText =
+                  selectedIndexes != null && selectedIndexes!.isNotEmpty
+                      ? selectedIndexes.toString()
+                      : '';
                 });
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Custom dialog",
               ),
               onTap: () {
@@ -806,25 +800,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   context: context,
                   barrierDismissible: true,
                   builder: (BuildContext context) {
-                    return SingleChildScrollView(
+                    return const SingleChildScrollView(
                         child: ListBody(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          width: 200.0,
-                          child: FlutterLogo(
-                            size: 150.0,
-                          ),
-                        )
-                      ],
-                    ));
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: SizedBox(
+                                width: 200.0,
+                                child: FlutterLogo(
+                                  size: 150.0,
+                                ),
+                              ),
+                            )
+                          ],
+                        ));
                   },
                   animationType: DialogTransitionType.size,
                   curve: Curves.linear,
                 );
               },
             ),
-            Divider(
+            const Divider(
               height: 0.5,
             ),
           ],
